@@ -34,7 +34,7 @@ function App() {
   const [currentEmployees, setCurrentEmployees] = useState(employees);
   const selectEmployee = (e) => {
     e.component.byKey(e.currentSelectedRowKeys[0]).done(employee => {
-        setSelectedEmployee(employee);
+      setSelectedEmployee(employee);
     });
   }
 

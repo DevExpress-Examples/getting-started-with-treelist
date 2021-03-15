@@ -26,22 +26,22 @@ export class AppComponent {
 
   onDragChange(e) {
     let visibleRows = e.component.getVisibleRows(),
-        sourceNode = e.component.getNodeByKey(e.itemData.ID),
-        targetNode = visibleRows[e.toIndex].node;
+      sourceNode = e.component.getNodeByKey(e.itemData.ID),
+      targetNode = visibleRows[e.toIndex].node;
 
     while(targetNode && targetNode.data) {
         if (targetNode.data.ID === sourceNode.data.ID) {
-            e.cancel = true;
-            break;
+          e.cancel = true;
+          break;
         }
         targetNode = targetNode.parent;
     }
   }
 
   onReorder(e) {
-    let visibleRows =  e.component.getVisibleRows();
-    let sourceData = e.itemData;
-    let  targetData = visibleRows[e.toIndex].data;
+    let visibleRows =  e.component.getVisibleRows(),
+      sourceData = e.itemData,
+      targetData = visibleRows[e.toIndex].data;
 
     if (e.dropInsideItem) {
       e.itemData.Head_ID = targetData.ID;
@@ -51,10 +51,10 @@ export class AppComponent {
       let targetIndex = this.employees.indexOf(targetData);
 
       if (sourceData.Head_ID !== targetData.Head_ID) {
-          sourceData.Head_ID = targetData.Head_ID;
-          if (e.toIndex > e.fromIndex) {
-              targetIndex++;
-          }
+        sourceData.Head_ID = targetData.Head_ID;
+        if (e.toIndex > e.fromIndex) {
+          targetIndex++;
+        }
       }
 
       this.employees.splice(sourceIndex, 1);

@@ -1,6 +1,6 @@
 <template>
   <div id="app-container">
-    <DxTreeList id="treeGrid"
+    <DxTreeList id="treeList"
       :data-source="employees"
       key-expr="ID"
       parent-id-expr="HeadID"
