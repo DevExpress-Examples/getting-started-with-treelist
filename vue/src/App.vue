@@ -33,7 +33,7 @@
         sort-order="asc">
         <DxRequiredRule />
       </DxColumn>
-      <DxColumn data-field="PostalCode" :visible="false" />
+      <DxColumn data-field="Email" :visible="false" />
       <DxColumn data-field="MobilePhone" />
       <DxColumn data-field="Skype" />
       

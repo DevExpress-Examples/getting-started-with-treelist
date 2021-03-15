@@ -37,7 +37,7 @@ $(function() {
                 type: "required"
             }]
         }, "City", "State", {
-            dataField: "PostalCode",
+            dataField: "Email",
             visible: false
         }, "MobilePhone", "Skype"],
         filterRow: { visible: true },

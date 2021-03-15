@@ -113,7 +113,7 @@ function App() {
           sortOrder="asc">
           <RequiredRule />
         </Column>
-        <Column dataField="PostalCode" visible={false} />
+        <Column dataField="Email" visible={false} />
         <Column dataField="MobilePhone" />
         <Column dataField="Skype" />
 
