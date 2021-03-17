@@ -53,6 +53,7 @@ function App() {
   }
 
   const onReorder = (e) => {
+    // debugger;
     let visibleRows = e.component.getVisibleRows(),
       sourceData = e.itemData,
       targetData = visibleRows[e.toIndex].data,
@@ -82,9 +83,10 @@ function App() {
       <TreeList
         id="treeList"
         dataSource={currentEmployees}
-        rootValue="-1"
+        rootValue={-1}
         keyExpr="ID"
         parentIdExpr="HeadID"
+        autoExpandAll={true}
         allowColumnReordering={true}
         allowColumnResizing={true}
         columnAutoWidth={true}
@@ -92,7 +94,9 @@ function App() {
         <Column dataField="FullName">
           <RequiredRule />
         </Column>
-        <Column dataField="Position">
+        <Column 
+          dataField="Position"
+          sortOrder="asc">
           <RequiredRule />
         </Column>
         <Column
@@ -109,8 +113,7 @@ function App() {
         </Column>
         <Column dataField="City" />
         <Column
-          dataField="State"
-          sortOrder="asc">
+          dataField="State">
           <RequiredRule />
         </Column>
         <Column dataField="Email" visible={false} />
@@ -139,7 +142,8 @@ function App() {
 
         <Paging
           enabled={true}
-          defaultPageSize={10} />
+          defaultPageSize={10} 
+        />
 
       </TreeList>
       <SelectedEmployee employee={selectedEmployee} />

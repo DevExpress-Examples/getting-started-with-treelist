@@ -4,6 +4,7 @@ $(function() {
         rootValue: -1,
         keyExpr: "ID",
         parentIdExpr: "HeadID",
+        autoExpandAll: true,
         allowColumnReordering: true,
         allowColumnResizing: true,
         columnAutoWidth: true,
@@ -19,6 +20,7 @@ $(function() {
             fixed: true
         }, {
             dataField: "Position",
+            sortOrder: "asc",
             validationRules: [{
                 type: "required"
             }]

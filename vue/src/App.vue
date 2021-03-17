@@ -2,9 +2,10 @@
   <div id="app-container">
     <DxTreeList id="treeList"
       :data-source="employees"
+      :root-value="-1"
       key-expr="ID"
       parent-id-expr="HeadID"
-      :root-value="-1"
+      :auto-expand-all="true"
       :allow-column-reordering="true"
       :allow-column-resizing="true"
       :column-auto-width="true"
@@ -12,7 +13,9 @@
       <DxColumn data-field="FullName" :fixed="true">
         <DxRequiredRule />
       </DxColumn>
-      <DxColumn data-field="Position">
+      <DxColumn 
+        data-field="Position"
+        sort-order="asc">
         <DxRequiredRule />
       </DxColumn>
       <DxColumn
@@ -29,8 +32,7 @@
       </DxColumn>
       <DxColumn data-field="City" />
       <DxColumn
-        data-field="State"
-        sort-order="asc">
+        data-field="State">
         <DxRequiredRule />
       </DxColumn>
       <DxColumn data-field="Email" :visible="false" />
@@ -129,15 +131,14 @@ export default {
     onReorder(e) {
       let visibleRows = e.component.getVisibleRows(),
         sourceData = e.itemData,
-        targetData = visibleRows[e.toIndex].data,
-        employees = service.getEmployees();
+        targetData = visibleRows[e.toIndex].data;
 
       if (e.dropInsideItem) {
         e.itemData.HeadID = targetData.ID;
         e.component.refresh();
       } else {
-        let sourceIndex = employees.indexOf(sourceData),
-          targetIndex = employees.indexOf(targetData);
+        let sourceIndex = this.employees.indexOf(sourceData),
+          targetIndex = this.employees.indexOf(targetData);
 
         if (sourceData.HeadID !== targetData.HeadID) {
           sourceData.HeadID = targetData.HeadID;
@@ -146,10 +147,10 @@ export default {
           }
         }
 
-        employees.splice(sourceIndex, 1);
-        employees.splice(targetIndex, 0, sourceData);
+        this.employees.splice(sourceIndex, 1);
+        this.employees.splice(targetIndex, 0, sourceData);
 
-        // this.employees = employees;
+        this.employees = this.employees.slice();
       }
     }
   }
@@ -157,17 +158,6 @@ export default {
 </script>
 
 <style>
-.employee-photo {
-  height: 140px;
-  float: left;
-  padding: 0 20px 20px 0;
-}
-
-.employee-notes {
-  text-align: justify;
-  white-space: normal;
-}
-
 #treeList {
   height: 500px;
 }

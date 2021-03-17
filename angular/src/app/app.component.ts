@@ -7,13 +7,14 @@ import { Employee, EmployeesService } from './employees.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Getting Started with Treelist';
+  title = 'Getting Started with TreeList';
   employees: Employee[] = [];
   selectedEmployee: Employee;
 
   constructor(service: EmployeesService) {
     this.employees = service.getEmployees();
     this.selectEmployee = this.selectEmployee.bind(this);
+    this.onReorder = this.onReorder.bind(this);
   }
 
   selectEmployee(e) {
@@ -44,14 +45,14 @@ export class AppComponent {
       targetData = visibleRows[e.toIndex].data;
 
     if (e.dropInsideItem) {
-      e.itemData.Head_ID = targetData.ID;
+      e.itemData.HeadID = targetData.ID;
       e.component.refresh();
     } else {
-      let sourceIndex = this.employees.indexOf(sourceData);
-      let targetIndex = this.employees.indexOf(targetData);
+      let sourceIndex = this.employees.indexOf(sourceData),
+        targetIndex = this.employees.indexOf(targetData);
 
-      if (sourceData.Head_ID !== targetData.Head_ID) {
-        sourceData.Head_ID = targetData.Head_ID;
+      if (sourceData.HeadID !== targetData.HeadID) {
+        sourceData.HeadID = targetData.HeadID;
         if (e.toIndex > e.fromIndex) {
           targetIndex++;
         }
