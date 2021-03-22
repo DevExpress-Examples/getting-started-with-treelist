@@ -111,8 +111,7 @@ function App() {
         </Column>
         <Column dataField="City" />
         <Column
-          dataField="State"
-          sortOrder="asc">
+          dataField="State">
           <RequiredRule />
         </Column>
         <Column dataField="Email" visible={false} />
