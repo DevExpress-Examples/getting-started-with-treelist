@@ -53,7 +53,6 @@ function App() {
   }
 
   const onReorder = (e) => {
-    // debugger;
     let visibleRows = e.component.getVisibleRows(),
       sourceData = e.itemData,
       targetData = visibleRows[e.toIndex].data,
@@ -95,8 +94,7 @@ function App() {
           <RequiredRule />
         </Column>
         <Column 
-          dataField="Position"
-          sortOrder="asc">
+          dataField="Position">
           <RequiredRule />
         </Column>
         <Column
@@ -113,7 +111,8 @@ function App() {
         </Column>
         <Column dataField="City" />
         <Column
-          dataField="State">
+          dataField="State"
+          sortOrder="asc">
           <RequiredRule />
         </Column>
         <Column dataField="Email" visible={false} />

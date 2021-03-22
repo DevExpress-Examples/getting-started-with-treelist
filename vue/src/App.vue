@@ -14,8 +14,7 @@
         <DxRequiredRule />
       </DxColumn>
       <DxColumn 
-        data-field="Position"
-        sort-order="asc">
+        data-field="Position">
         <DxRequiredRule />
       </DxColumn>
       <DxColumn
@@ -32,7 +31,8 @@
       </DxColumn>
       <DxColumn data-field="City" />
       <DxColumn
-        data-field="State">
+        data-field="State"
+        sort-order="asc">
         <DxRequiredRule />
       </DxColumn>
       <DxColumn data-field="Email" :visible="false" />
