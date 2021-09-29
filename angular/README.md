@@ -1,4 +1,6 @@
-# GettingStartedWithTreeList
+# Getting Started with DevExtreme Angular TreeList
+
+This repository stores Angular  source code for the [Getting Started with TreeList](https://js.devexpress.com/Documentation/Guide/UI_Components/TreeList/Getting_Started_with_TreeList/) tutorial.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.28.
 
