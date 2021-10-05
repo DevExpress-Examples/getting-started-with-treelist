@@ -5,4 +5,4 @@
 <!-- default badges end -->
 # Getting Started with DevExtreme TreeList
 
-This repository stores the source code for the [Getting Started with TreeList](https://js.devexpress.com/Documentation/Guide/UI_Components/TreeList/Getting_Started_with_TreeList/) tutorial.
+This repository stores the source code for the [Getting Started with TreeList](https://js.devexpress.com/Documentation/Guide/UI_Components/TreeList/Getting_Started_with_TreeList/) tutorial. 
