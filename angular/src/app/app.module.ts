@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DxTreeListModule } from 'devextreme-angular/ui/tree-list';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +12,8 @@ import { DxTreeListModule } from 'devextreme-angular/ui/tree-list';
   ],
   imports: [
     BrowserModule,
-    DxTreeListModule
+    DxTreeListModule,
+    DxButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

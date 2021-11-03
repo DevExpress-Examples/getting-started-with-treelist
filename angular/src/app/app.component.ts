@@ -7,9 +7,10 @@ import { Employee, EmployeesService } from './employees.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Getting Started with TreeList';
   employees: Employee[] = [];
   selectedEmployee: Employee;
+  expanded: Boolean = true;
+  expandedRowKeys: Number[] = [];
 
   constructor(service: EmployeesService) {
     this.employees = service.getEmployees();

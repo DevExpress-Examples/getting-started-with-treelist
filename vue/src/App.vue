@@ -5,7 +5,8 @@
       :root-value="-1"
       key-expr="ID"
       parent-id-expr="HeadID"
-      :auto-expand-all="true"
+      :auto-expand-all="expanded"
+      :expanded-row-keys="expandedRowKeys"
       :allow-column-reordering="true"
       :allow-column-resizing="true"
       :column-auto-width="true"
@@ -50,6 +51,20 @@
         :allow-deleting="true"
       />
 
+      <DxToolbar>
+        <DxItem location="after">
+          <DxButton
+            :text="expanded ? 'Collapse All' : 'Expand All'"
+            :width="136"
+            @click="expanded = !expanded; expandedRowKeys = []"
+          />
+        </DxItem>
+        <DxItem name="addRowButton" show-text="always" />
+        <DxItem name="exportButton" />
+        <DxItem name="columnChooserButton" />
+        <DxItem name="searchPanel" />
+      </DxToolbar>
+
       <DxRowDragging
         :on-drag-change="onDragChange"
         :on-reorder="onReorder"
@@ -80,9 +95,12 @@ import {
   DxSearchPanel,
   DxSelection,
   DxEditing,
+  DxToolbar,
+  DxItem,
   DxRowDragging,
   DxPaging
 } from 'devextreme-vue/tree-list';
+import { DxButton } from 'devextreme-vue/button';
 import service from './employees.service';
 
 export default {
@@ -97,13 +115,18 @@ export default {
     DxSearchPanel,
     DxSelection,
     DxEditing,
+    DxToolbar,
+    DxItem,
     DxRowDragging,
-    DxPaging
+    DxPaging,
+    DxButton
   },
   data() {
     return {
       employees: service.getEmployees(),
       selectedEmployee: undefined,
+      expanded: true,
+      expandedRowKeys: []
     }
   },
   methods: {

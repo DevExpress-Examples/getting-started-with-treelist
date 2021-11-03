@@ -4,7 +4,8 @@
     [rootValue]="-1"
     keyExpr="ID"
     parentIdExpr="HeadID"
-    [autoExpandAll]="true"
+    [autoExpandAll]="expanded"
+    [(expandedRowKeys)]="expandedRowKeys"
     [allowColumnReordering]="true"
     [allowColumnResizing]="true"
     [columnAutoWidth]="true"
@@ -49,6 +50,20 @@
       [allowDeleting]="true"
       [allowAdding]="true">
     </dxo-editing>
+
+    <dxo-toolbar>
+      <dxi-item location="after">
+        <dx-button
+          [text]="expanded ? 'Collapse All' : 'Expand All'"
+          [width]="136"
+          (onClick)="expanded = !expanded; expandedRowKeys = []">
+        </dx-button>
+      </dxi-item>
+      <dxi-item name="addRowButton" showText="always"></dxi-item>
+      <dxi-item name="exportButton"></dxi-item>
+      <dxi-item name="columnChooserButton"></dxi-item>
+      <dxi-item name="searchPanel"></dxi-item>
+    </dxo-toolbar>
 
     <dxo-row-dragging
       [onDragChange]="onDragChange"

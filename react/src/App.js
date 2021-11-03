@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
 import './App.css'
@@ -13,9 +13,12 @@ import {
   SearchPanel,
   Selection,
   Editing,
+  Toolbar,
+  Item,
   RowDragging, 
   Paging
 } from 'devextreme-react/tree-list';
+import { Button } from 'devextreme-react/button';
 import { employees } from './employees';
 
 function SelectedEmployee(props) {
@@ -31,14 +34,23 @@ function SelectedEmployee(props) {
 
 function App() {
   const [selectedEmployee, setSelectedEmployee] = useState();
+  const [expanded, setExpanded] = useState(true);
+  const [expandedRowKeys, setExpandedRowKeys] = useState([]);
   const [currentEmployees, setCurrentEmployees] = useState(employees);
-  const selectEmployee = (e) => {
+
+  const selectEmployee = useCallback((e) => {
     e.component.byKey(e.currentSelectedRowKeys[0]).done(employee => {
       setSelectedEmployee(employee);
     });
-  }
+  }, []);
 
-  const onDragChange = (e) => {
+  const onOptionChanged = useCallback((e) => {
+    if(e.name === 'expandedRowKeys') {
+        setExpandedRowKeys(e.value);
+    }
+  }, []);
+
+  const onDragChange = useCallback((e) => {
     let visibleRows = e.component.getVisibleRows(),
       sourceNode = e.component.getNodeByKey(e.itemData.ID),
       targetNode = visibleRows[e.toIndex].node;
@@ -50,9 +62,9 @@ function App() {
       }
       targetNode = targetNode.parent;
     }
-  }
+  }, []);
 
-  const onReorder = (e) => {
+  const onReorder = useCallback((e) => {
     let visibleRows = e.component.getVisibleRows(),
       sourceData = e.itemData,
       targetData = visibleRows[e.toIndex].data,
@@ -75,7 +87,7 @@ function App() {
     }
 
     setCurrentEmployees(employeesReordered);
-  }
+  }, []);
 
   return (
     <div className="App">
@@ -85,11 +97,13 @@ function App() {
         rootValue={-1}
         keyExpr="ID"
         parentIdExpr="HeadID"
-        autoExpandAll={true}
+        autoExpandAll={expanded}
+        expandedRowKeys={expandedRowKeys}
         allowColumnReordering={true}
         allowColumnResizing={true}
         columnAutoWidth={true}
-        onSelectionChanged={selectEmployee}>
+        onSelectionChanged={selectEmployee}
+        onOptionChanged={onOptionChanged}>
         <Column dataField="FullName">
           <RequiredRule />
         </Column>
@@ -129,6 +143,23 @@ function App() {
           allowAdding={true}
         />
         <Selection mode="single" />
+
+        <Toolbar>
+          <Item location="after">
+            <Button
+                text={expanded ? 'Collapse All' : 'Expand All'}
+                width={136}
+                onClick={() => {
+                    setExpanded(prevExpanded => !prevExpanded)
+                    setExpandedRowKeys([]);
+                }}
+            />
+          </Item>
+          <Item name="addRowButton" showText="always" />
+          <Item name="exportButton" />
+          <Item name="columnChooserButton" />
+          <Item name="searchPanel" />
+        </Toolbar>
 
         <RowDragging
           onDragChange={onDragChange}
