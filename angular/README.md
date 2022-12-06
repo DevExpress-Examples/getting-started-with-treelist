@@ -1,6 +1,6 @@
-# Getting Started with DevExtreme Angular TreeList
+# DevExtreme Angular TreeList - Getting Started 
 
-This repository stores Angular  source code for the [Getting Started with TreeList](https://js.devexpress.com/Documentation/Guide/UI_Components/TreeList/Getting_Started_with_TreeList/) tutorial.
+This repository stores code examples of the Angular TreeList component for the [Getting Started with TreeList](https://js.devexpress.com/Documentation/Guide/UI_Components/TreeList/Getting_Started_with_TreeList/) tutorial. The TreeList component uses a multi-column tree view to display data from a local or remote storage and allows users to sort, group, filter, and perform other data operations. This tutorial shows how to add the TreeList to a page, bind it to data, and configure its core features.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.28.
 
@@ -18,11 +18,11 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute unit tests using [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute end-to-end tests using [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
